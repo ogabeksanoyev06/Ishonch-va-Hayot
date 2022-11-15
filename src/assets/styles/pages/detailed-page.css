@@ -1,0 +1,227 @@
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.content__main {
+  max-width: calc(100% - 420px);
+  width: 100%;
+  overflow: hidden;
+}
+.sidebar {
+  max-width: 390px;
+  width: 100%;
+  overflow: hidden;
+  margin-right: 30px;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e5ecf5;
+}
+.module__accordion {
+  transition: 0.3s;
+  border: 1px solid #e5ecf5 !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.sidebar__title {
+  background-color: #598fdb;
+  padding: 16px;
+}
+.sidebar__prgoress {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.sidebar__prgoress-bg {
+  position: absolute;
+  height: 100%;
+  background-color: #7cb500;
+  border-radius: 10px;
+}
+.sidebar__title p {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+  color: #fff !important;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.module__accordion .accordion {
+  transition: 0.3s !important;
+  height: 100%;
+}
+.accordion__item {
+  cursor: pointer;
+  position: relative;
+  margin: 15px;
+  border: 1px solid #e5ecf5 !important;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.accordion__trigger {
+  display: flex;
+  justify-content: space-between;
+}
+.module__accordion-header {
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.module__accordion .accordion .module__accordion-numb {
+  font-weight: 700;
+  color: #232c3c;
+  background-color: #e5ecf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  min-width: 24px;
+  min-height: 24px;
+  font-size: 12px;
+  line-height: 14px;
+  margin-right: 20px;
+}
+
+.module__accordion-text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #0f101d;
+  display: flex;
+  align-items: center;
+}
+.module__accordion-item {
+  display: flex;
+  width: 100%;
+  background: white;
+  padding: 10px 20px;
+  border: 1px solid #e5ecf5 !important;
+  border-radius: 10px;
+}
+.module__accordion-img {
+  margin-right: 6px;
+}
+
+/* .accordion__item.active {
+  background-color: #7cb500 !important;
+} */
+.module__accordion-item.active .module__accordion-text {
+  color: #7cb500 !important;
+}
+.content__main-btn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.content__main-btn button {
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  height: 48px;
+  width: 100%;
+  background: #f2f7f2;
+  border-radius: 39px;
+}
+.content__main-btn button span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #0f101d;
+  margin-left: 10px;
+}
+/* vajni */
+.accordion-img {
+  margin-right: 20px;
+}
+.impInfo_content {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+.impInfo_content img {
+  margin-right: 20px;
+}
+.impInfo_content p {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 130%;
+  color: #1f2136;
+}
+.accordion-text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 130%;
+  color: #1f2136;
+  position: relative;
+}
+.accordion-item {
+  border: none !important;
+}
+.accordion-item .accordion-text {
+  font-size: 18px;
+  line-height: 148%;
+  color: rgba(15, 16, 29);
+}
+.prevDetailed {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 0 20px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 10px;
+  background-color: #00419e;
+  margin-bottom: 10px;
+  margin-left: auto;
+}
+@media (min-width: 992px) {
+  .sidebar {
+    position: fixed;
+    top: 100px;
+    left: 50px;
+  }
+  .content__main {
+    margin-left: 500px;
+  }
+}
+@media (max-width: 991px) {
+  .sidebar {
+    max-width: 100% !important;
+    margin-bottom: 20px;
+    order: 2;
+    margin-right: 0;
+    margin-top: 30px;
+  }
+  .content__main {
+    max-width: 100%;
+    order: 1;
+  }
+  /* .content__main {
+      max-width: calc(100% - 310px);
+    }
+    .sidebar {
+      max-width: 280px;
+    } */
+}
+@media (max-width: 768px) {
+  .accordion-text {
+    font-size: 18px;
+  }
+}
+@media (max-width: 576px) {
+  .content__main-btn button {
+    min-width: 50px !important;
+    max-width: 50px;
+    padding: 8px;
+    height: 34px;
+  }
+  .content__main-btn button span {
+    display: none;
+  }
+}

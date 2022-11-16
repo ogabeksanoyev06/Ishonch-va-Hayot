@@ -56,25 +56,18 @@
       </div>
       <div class="auth__register-form-group">
         <label for="login" class="auth__register-form-label">
-          {{ $t("Telephone") }}
+          {{ $t("Email") }}
         </label>
-        <div class="group_pre">
-          <div class="auth-input-group__prepend">998</div>
-          <input
-            type="text"
-            id="login"
-            class="auth__register-form-input"
-            :class="{ 'is-invalid': $v.form.login.$error }"
-            placeholder="(71)123-45-67"
-            v-model="form.login"
-            v-mask="'#########'"
-          />
-        </div>
+        <input
+          type="email"
+          id="login"
+          class="auth__register-form-input"
+          :class="{ 'is-invalid': $v.form.login.$error }"
+          placeholder="ogabeksanoyev06@gmail.com"
+          v-model="form.login"
+        />
         <div v-if="$v.form.login.$error" class="invalid-feedback">
-          <span v-if="!$v.form.login.required"> Phone is required </span>
-          <span v-if="!$v.form.login.minLength">
-            The number of characters should be at least 9!
-          </span>
+          <span v-if="!$v.form.login.required"> Email is required </span>
         </div>
       </div>
       <div class="auth__register-form-group">
@@ -169,6 +162,7 @@ import {
   minLength,
   maxLength,
   sameAs,
+  email,
 } from "vuelidate/lib/validators";
 // import axios from "axios";
 import "@/assets/styles/pages/register.css";
@@ -197,7 +191,7 @@ export default {
     form: {
       lastName: { required, minLength: minLength(4) },
       firstName: { required, minLength: minLength(4) },
-      login: { required, minLength: minLength(6) },
+      login: { required, email },
       password: {
         required,
         minLength: minLength(6),

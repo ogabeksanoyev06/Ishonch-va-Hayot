@@ -7,9 +7,7 @@
     <div class="tab_content-text">
       {{$t("Text4-3-2")}}
     </div>
-    <div class="tab_content-text">
-      {{$t("Text4-3-3")}}
-    </div>
+   
     <div class="tabImg" style="max-width: 900px">
       <img class="w-100" src="/images/tabImg/151.png" alt="" />
     </div>

@@ -8,7 +8,7 @@
             <div class="sidebar__title">
               <p>МОДУЛЬ 6: COVID-19 И ПРАВА ЧЕЛОВЕКА</p>
               <p style="margin-bottom: 10px">
-                {{ (filterReadModule.length / 5) * 100 }} %
+                {{ Math.floor((filterReadModule.length / 5) * 100) }} %
               </p>
               <div class="sidebar__prgoress">
                 <div
@@ -19,83 +19,68 @@
             </div>
             <div class="divider" />
             <!-- <p class="sidebar__title">Introduction</p> -->
-            <Accordion>
-              <AccordionItem
-                :class="sectionContentId === sectionContent.id ? 'active' : ''"
-                v-for="(
-                  sectionContent, sectionContentIndex
-                ) in sectionContentTree"
-                :key="sectionContentIndex"
-                @click="sectionContenActive(sectionContent.id)"
-              >
-                <template slot="accordion-trigger">
-                  <div class="module__accordion-header">
-                    <div class="module__accordion-numb">
-                      6.{{ sectionContentIndex + 1 }}
-                    </div>
-                    <h4 class="module__accordion-text">
-                      {{ $t(sectionContent.name) }}
-                    </h4>
-                  </div>
-                </template>
-                <template slot="accordion-content">
+            <div
+              :class="sectionContentId === sectionContent.id ? 'active' : ''"
+              v-for="(
+                sectionContent, sectionContentIndex
+              ) in sectionContentTree"
+              :key="sectionContentIndex"
+              @click="sectionContenActive(sectionContent.id)"
+              style="cursor: pointer"
+            >
+              <div>
+                <div
+                  style="padding: 15px 15px 15px"
+                  v-for="(content, contentIndex) in sectionContent.contentList"
+                  :key="contentIndex"
+                  @click="selectContent(sectionContent.id, content.id)"
+                >
                   <div
-                    style="padding: 0 15px 15px"
-                    v-for="(
-                      content, contentIndex
-                    ) in sectionContent.contentList"
-                    :key="contentIndex"
-                    @click="selectContent(sectionContent.id, content.id)"
+                    style="justify-content: space-between"
+                    class="module__accordion-item"
+                    :class="contentId === content.id ? 'active' : ''"
                   >
-                    <div
-                      style="justify-content: space-between"
-                      class="module__accordion-item"
-                      :class="contentId === content.id ? 'active' : ''"
-                    >
-                      <div class="d-flex">
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/vajni.svg"
-                          alt=""
-                          v-if="content.name == 'Bажная информация'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/test.svg"
-                          alt=""
-                          v-else-if="content.name == 'Тест'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/book.svg"
-                          alt=""
-                          v-else
-                        />
-                        <h4 class="module__accordion-text">
-                          {{ $t(content.name) }}
-                        </h4>
-                      </div>
+                    <div class="d-flex">
                       <img
-                        v-if="
-                          filterReadModule[content.id]?.paragraphId ===
-                          content.id
-                        "
-                        src="/icons/check.svg"
+                        class="module__accordion-img"
+                        src="/icons/vajni.svg"
                         alt=""
+                        v-if="content.name == 'Bажная информация'"
                       />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/test.svg"
+                        alt=""
+                        v-else-if="content.name == 'Тест'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/book.svg"
+                        alt=""
+                        v-else
+                      />
+                      <h4 class="module__accordion-text">
+                        {{ $t(content.name) }}
+                      </h4>
                     </div>
+                    <img
+                      v-if="
+                        filterReadModule[content.id]?.paragraphId === content.id
+                      "
+                      src="/icons/check.svg"
+                      alt=""
+                    />
                   </div>
-                </template>
-              </AccordionItem>
-            </Accordion>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="content__main">
           <tab-1 v-show="isActive(0)" />
           <tab-3 v-show="isActive(1)" />
-          <tab-6 v-show="isActive(2)" />
-          <tab-7 v-show="isActive(3)" />
-          <tab-10 v-show="isActive(4)" />
+          <tab-7 v-show="isActive(2)" />
+          <tab-10 v-show="isActive(3)" />
           <div>
             <div style="margin: 30px 0" class="divider" />
             <div class="content__main-btn">
@@ -120,7 +105,7 @@
               </button>
               <button
                 class="content__main-next"
-                v-if="activeTab !== 4"
+                v-if="activeTab !== 3"
                 @click="activeTabList(activeTab + 1)"
               >
                 <span style="margin-right: 10px">Далее</span>
@@ -145,12 +130,9 @@
   </div>
 </template>
 <script>
-import Accordion from "@/components/shared-components/Accordion.vue";
-import AccordionItem from "@/components/shared-components/AccordionItem.vue";
 import "@/assets/styles/pages/detailed-page.css";
 import Tab1 from "@/views/site/modules/moduleSix/tab-content/tab-1.vue";
 import Tab3 from "@/views/site/modules/moduleSix/tab-content/tab-3.vue";
-import Tab6 from "@/views/site/modules/moduleSix/tab-content/tab-6.vue";
 import Tab7 from "@/views/site/modules/moduleSix/tab-content/tab-7.vue";
 import Tab10 from "@/views/site/modules/moduleSix/tab-content/tab-10.vue";
 import ReadModule from "@/service/readModule.service";
@@ -159,11 +141,8 @@ import { mapState } from "vuex";
 export default {
   name: "detailedPage",
   components: {
-    Accordion,
-    AccordionItem,
     Tab1,
     Tab3,
-    Tab6,
     Tab7,
     Tab10,
   },
@@ -180,40 +159,18 @@ export default {
           contentList: [
             {
               id: 0,
-              name: "Основная информация",
+              name: "Основные принципы медицинской этики",
             },
-          ],
-        },
-        {
-          id: 1,
-          name: "Права человека и COVID-19",
-          contentList: [
             {
               id: 1,
-              name: "Право на жизнь и обязанность защищать жизнь",
+              name: "Права человека и COVID-19",
             },
-          ],
-        },
-        {
-          id: 2,
-          name: "Этические принципы оптимального оказания медицинской помощи во время пандемии COVID-19",
-          contentList: [
             {
               id: 2,
               name: "Этические принципы оптимального оказания медицинской помощи во время пандемии COVID-19",
             },
             {
               id: 3,
-              name: "Неоставление без помощи",
-            },
-          ],
-        },
-        {
-          id: 3,
-          name: "Тест",
-          contentList: [
-            {
-              id: 4,
               name: "Тест",
             },
           ],

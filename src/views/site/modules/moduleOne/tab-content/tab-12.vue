@@ -119,41 +119,17 @@ export default {
               },
             ],
           },
-          {
-            id: 4,
-            question:
-              "Какие меры общественной профилактики от COVID-19 являются наиболее эффективными?",
-            suggestions: [
-              {
-                suggestion:
-                  "Ранняя диагностика, современное оповещение о случаях заражения, изоляция больных, вакцинопрофилактика",
-                res_number: 17,
-                id: "emaple17",
-                isTrue: false,
-              },
-              {
-                suggestion:
-                  "Запрет на проведение массовых мероприятий, переход на удаленную работу ",
-                res_number: 18,
-                id: "emaple18",
-                isTrue: true,
-              },
-              {
-                suggestion:
-                  "Помещение заболевших в карантин, вакцинопрофилактика ",
-                res_number: 19,
-                id: "emaple19",
-                isTrue: false,
-              },
-            ],
-          },
         ],
         subjectName: null,
         maxBall: 80,
-        quesCount: 5,
+        quesCount: 4,
         beginDate: this.beginDate,
         moduleId: 1,
         moduleName: "module-one",
+        moduleTestStart:
+          "Начало После презентации выпишите себе основные понятия данного модуля и ответьте на следующие вопросы",
+        moduleTestEnd:
+          "Поздравляем! Вы отлично справились! Давайте перейдем к изучению Модуля №2. В нем мы подробно изучим инфекцию COVID-19",
       },
     };
   },

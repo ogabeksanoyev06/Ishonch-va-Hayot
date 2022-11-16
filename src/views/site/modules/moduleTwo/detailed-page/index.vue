@@ -1,14 +1,16 @@
 <template>
   <div class="detailed-page">
     <div class="container-fluid">
-      <button class="prevDetailed" @click="detailedPages">{{$t("orqaga")}}</button>
+      <button class="prevDetailed" @click="detailedPages">
+        {{ $t("orqaga") }}
+      </button>
       <div class="content">
         <div class="sidebar">
           <div class="module__accordion">
             <div class="sidebar__title">
-              <p>{{$t("modul2")}}</p>
+              <p>{{ $t("modul2") }}</p>
               <p style="margin-bottom: 10px">
-                {{ (filterReadModule?.length / 3) * 100 }} %
+                {{ Math.floor((filterReadModule?.length / 3) * 100) }} %
               </p>
               <div class="sidebar__prgoress">
                 <div
@@ -20,75 +22,61 @@
 
             <div class="divider" />
             <!-- <p class="sidebar__title">Introduction</p> -->
-            <Accordion>
-              <AccordionItem
-                :class="sectionContentId === sectionContent.id ? 'active' : ''"
-                v-for="(
-                  sectionContent, sectionContentIndex
-                ) in sectionContentTree"
-                :key="sectionContentIndex"
-                @click="sectionContenActive(sectionContent.id)"
-              >
-                <template slot="accordion-trigger">
-                  <div class="module__accordion-header">
-                    <div class="module__accordion-numb">
-                      2.{{ sectionContentIndex + 1 }}
-                    </div>
-                    <h4 class="module__accordion-text">
-                      {{ $t(sectionContent.name) }}
-                    </h4>
-                  </div>
-                </template>
-                <template slot="accordion-content">
+            <div
+              :class="sectionContentId === sectionContent.id ? 'active' : ''"
+              v-for="(
+                sectionContent, sectionContentIndex
+              ) in sectionContentTree"
+              :key="sectionContentIndex"
+              @click="sectionContenActive(sectionContent.id)"
+              style="cursor: pointer"
+            >
+              <div>
+                <div
+                  style="padding: 15px 15px 15px"
+                  v-for="(content, contentIndex) in sectionContent.contentList"
+                  :key="contentIndex"
+                  @click="selectContent(sectionContent.id, content.id)"
+                >
                   <div
-                    style="padding: 0 15px 15px"
-                    v-for="(
-                      content, contentIndex
-                    ) in sectionContent.contentList"
-                    :key="contentIndex"
-                    @click="selectContent(sectionContent.id, content.id)"
+                    style="justify-content: space-between"
+                    class="module__accordion-item"
+                    :class="contentId === content.id ? 'active' : ''"
                   >
-                    <div
-                      style="justify-content: space-between"
-                      class="module__accordion-item"
-                      :class="contentId === content.id ? 'active' : ''"
-                    >
-                      <div class="d-flex">
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/vajni.svg"
-                          alt=""
-                          v-if="content.name == 'Bажная информация'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/test.svg"
-                          alt=""
-                          v-else-if="content.name == 'Тест'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/book.svg"
-                          alt=""
-                          v-else
-                        />
-                        <h4 class="module__accordion-text">
-                          {{ $t(content.name) }}
-                        </h4>
-                      </div>
+                    <div class="d-flex">
                       <img
-                        v-if="
-                          filterReadModule[content.id]?.paragraphId ===
-                          content.id
-                        "
-                        src="/icons/check.svg"
+                        class="module__accordion-img"
+                        src="/icons/vajni.svg"
                         alt=""
+                        v-if="content.name == 'Bажная информация'"
                       />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/test.svg"
+                        alt=""
+                        v-else-if="content.name == 'Тест'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/book.svg"
+                        alt=""
+                        v-else
+                      />
+                      <h4 class="module__accordion-text">
+                        {{ $t(content.name) }}
+                      </h4>
                     </div>
+                    <img
+                      v-if="
+                        filterReadModule[content.id]?.paragraphId === content.id
+                      "
+                      src="/icons/check.svg"
+                      alt=""
+                    />
                   </div>
-                </template>
-              </AccordionItem>
-            </Accordion>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="content__main">
@@ -144,8 +132,6 @@
   </div>
 </template>
 <script>
-import Accordion from "@/components/shared-components/Accordion.vue";
-import AccordionItem from "@/components/shared-components/AccordionItem.vue";
 import Tab1 from "@/views/site/modules/moduleTwo/tab-content/tab-1.vue";
 import Tab4 from "@/views/site/modules/moduleTwo/tab-content/tab-4.vue";
 import Tab7 from "@/views/site/modules/moduleTwo/tab-content/tab-7.vue";
@@ -156,8 +142,6 @@ import "@/assets/styles/pages/detailed-page.css";
 export default {
   name: "detailedPage",
   components: {
-    Accordion,
-    AccordionItem,
     Tab1,
     Tab4,
     Tab7,
@@ -175,25 +159,13 @@ export default {
           contentList: [
             {
               id: 0,
-              name: "К наиболее распространенным симптомам COVID-19 относятся",
+              name: "Возбудитель - COVID-19, основные симптомы",
               isActive: true,
             },
-          ],
-        },
-        {
-          id: 1,
-          name: "Симптомы ОРВИ и гриппа",
-          contentList: [
             {
               id: 1,
               name: "Обзор вакцин и новые рекомендации о вакцинации от COVID-19",
             },
-          ],
-        },
-        {
-          id: 2,
-          name: "Упражнение",
-          contentList: [
             {
               id: 2,
               name: "Упражнение",

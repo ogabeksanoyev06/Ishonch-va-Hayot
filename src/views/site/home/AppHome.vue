@@ -1,6 +1,13 @@
 <template>
   <div>
     <div class="home-page">
+      <vue-qr
+        :bgSrc="src"
+        :logoSrc="src2"
+        text="Hello world!"
+        :size="200"
+      ></vue-qr>
+      <vue-qr text="Hello world!" :callback="test" qid="testid"></vue-qr>
       <HeroBanner />
       <div class="container home__text">
         <p>
@@ -19,21 +26,22 @@
         ></iframe>
       </div>
       <PreTest v-if="preTest" />
-      <div class="container mt-5">
-        <div class="module__title">{{ $t("Modules") }}</div>
+      <div class="mt-5">
+        <div class="module__title container">{{ $t("Modules") }}</div>
         <app-modules />
       </div>
     </div>
   </div>
 </template>
 <script>
+import VueQr from "vue-qr";
 import HeroBanner from "@/components/pages/home/HeroBanner.vue";
 import AppModules from "../modules/AppModules.vue";
 import PreTest from "@/views/site/preTest/PreTest.vue";
 import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   name: "app-home",
-  components: { HeroBanner, AppModules, PreTest },
+  components: { HeroBanner, AppModules, PreTest, VueQr },
   data() {
     return {
       resultModuleId: [],
@@ -43,6 +51,9 @@ export default {
     ...mapActions(["getUser"]),
     closeModal() {
       this.resultTest = false;
+    },
+    test(id) {
+      console.log(id);
     },
   },
   computed: {

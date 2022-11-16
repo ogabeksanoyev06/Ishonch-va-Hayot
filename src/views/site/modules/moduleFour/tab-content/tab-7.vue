@@ -212,6 +212,10 @@ export default {
         quesCount: 10,
         beginDate: this.beginDate,
         moduleId: 4,
+        moduleName: "module-four",
+        moduleTestStart:
+          "Для закрепления знаний, ответьте на вопросы по теме модуля",
+        moduleTestEnd: "Поздравляем! Вы отлично справились!",
       },
     };
   },

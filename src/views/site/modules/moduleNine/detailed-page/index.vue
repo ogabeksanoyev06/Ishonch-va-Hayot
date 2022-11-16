@@ -8,7 +8,7 @@
             <div class="sidebar__title">
               <p>{{ $t("Module") }} 9: {{ $t("TextModule9") }}</p>
               <p style="margin-bottom: 10px">
-                {{ (filterReadModule.length / 1) * 100 }} %
+                {{ Math.floor((filterReadModule.length / 1) * 100) }} %
               </p>
               <div class="sidebar__prgoress">
                 <div
@@ -19,64 +19,51 @@
             </div>
             <div class="divider" />
             <!-- <p class="sidebar__title">Introduction</p> -->
-            <Accordion>
-              <AccordionItem
-                :class="sectionContentId === sectionContent.id ? 'active' : ''"
-                v-for="(
-                  sectionContent, sectionContentIndex
-                ) in sectionContentTree"
-                :key="sectionContentIndex"
-                @click="sectionContenActive(sectionContent.id)"
-              >
-                <template slot="accordion-trigger">
-                  <div class="module__accordion-header">
-                    <div class="module__accordion-numb">
-                      9.{{ sectionContentIndex + 1 }}
-                    </div>
+            <div
+              :class="sectionContentId === sectionContent.id ? 'active' : ''"
+              v-for="(
+                sectionContent, sectionContentIndex
+              ) in sectionContentTree"
+              :key="sectionContentIndex"
+              @click="sectionContenActive(sectionContent.id)"
+              style="cursor: pointer"
+            >
+              <div>
+                <div
+                  style="padding: 15px 15px 15px"
+                  v-for="(content, contentIndex) in sectionContent.contentList"
+                  :key="contentIndex"
+                  @click="selectContent(sectionContent.id, content.id)"
+                >
+                  <div
+                    class="module__accordion-item"
+                    :class="contentId === content.id ? 'active' : ''"
+                  >
                     <h4 class="module__accordion-text">
-                      {{ $t(sectionContent.name) }}
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/vajni.svg"
+                        alt=""
+                        v-if="content.name == 'Bажная информация'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/test.svg"
+                        alt=""
+                        v-else-if="content.name == 'Тест'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/book.svg"
+                        alt=""
+                        v-else
+                      />
+                      {{ $t(content.name) }}
                     </h4>
                   </div>
-                </template>
-                <template slot="accordion-content">
-                  <div
-                    style="padding: 0 15px 15px"
-                    v-for="(
-                      content, contentIndex
-                    ) in sectionContent.contentList"
-                    :key="contentIndex"
-                    @click="selectContent(sectionContent.id, content.id)"
-                  >
-                    <div
-                      class="module__accordion-item"
-                      :class="contentId === content.id ? 'active' : ''"
-                    >
-                      <h4 class="module__accordion-text">
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/vajni.svg"
-                          alt=""
-                          v-if="content.name == 'Bажная информация'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/test.svg"
-                          alt=""
-                          v-else-if="content.name == 'Тест'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/book.svg"
-                          alt=""
-                          v-else
-                        />
-                        {{ $t(content.name) }}
-                      </h4>
-                    </div>
-                  </div>
-                </template>
-              </AccordionItem>
-            </Accordion>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="content__main">
@@ -126,8 +113,6 @@
   </div>
 </template>
 <script>
-import Accordion from "@/components/shared-components/Accordion.vue";
-import AccordionItem from "@/components/shared-components/AccordionItem.vue";
 import "@/assets/styles/pages/detailed-page.css";
 import Tab1 from "@/views/site/modules/moduleNine/tab-content/tab-1.vue";
 import ReadModule from "@/service/readModule.service";
@@ -136,8 +121,6 @@ import { mapState } from "vuex";
 export default {
   name: "detailedPage",
   components: {
-    Accordion,
-    AccordionItem,
     Tab1,
   },
   data() {

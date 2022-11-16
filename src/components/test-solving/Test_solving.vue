@@ -2,18 +2,20 @@
   <div class="test__body" id="test_solving_component">
     <AppModal v-if="closeDancing" @close="closeModalDancing">
       <div class="modal__wrap">
-        <div class="dancing__body">
-          <p class="dancing__text">
-            <!-- {{ questionsProp.quesCount }} вопросов правильно 100%, проходной
+        <div>
+          <div class="dancing__body">
+            <p class="dancing__text">
+              <!-- {{ questionsProp.quesCount }} вопросов правильно 100%, проходной
             {{ questionsProp.maxBall }}%, если неправильные ответы много
             возможность пересдачи, повтор бессконечно -->
-            Давайте пройдем тест. В случае неудачи, пройдите тест снова
-          </p>
-          <div class="dancing__img">
-            <img src="/images/moduleBanner1.png" alt="" />
+              {{ questionsProp.moduleTestStart }}
+            </p>
+            <div class="dancing__img">
+              <img src="/images/moduleBanner1.png" alt="" />
+            </div>
           </div>
+          <button class="dancing__btn" @click="closeModalDancing">Ok</button>
         </div>
-        <button class="dancing__btn" @click="closeModalDancing">Ok</button>
       </div>
     </AppModal>
     <div class="d-flex flex-column align-items-center">
@@ -33,7 +35,8 @@
       </div>
       <div class="result__test">
         <div v-if="this.testResults?.result.length > 0">
-          {{ filterModuleId }}<sup>%</sup>
+          <span style="color: #333333; margin-right: 30px">Начало урока</span>
+          {{ filterModuleId }}
         </div>
         <div v-else></div>
       </div>
@@ -102,15 +105,9 @@
               role="status"
             ></div>
           </div>
-          <div class="result__test">
-            <div v-if="!loading && this?.testResults?.result.length > 0">
-              {{ filterModuleId }}<sup>%</sup>
-            </div>
-            <div v-else></div>
-          </div>
           <div class="dancing__body">
             <p class="dancing__text" v-if="filterModuleId > maxBall">
-              Поздравляем, вы отлично справились
+              {{ questionsProp.moduleTestEnd }}
             </p>
             <div class="correct" v-else>
               <p class="dancing__text">
@@ -136,9 +133,6 @@
                   </span>
                 </div>
               </div>
-            </div>
-            <div class="dancing__img">
-              <img src="/images/moduleBanner1.png" alt="" />
             </div>
           </div>
           <button
@@ -185,6 +179,8 @@ export default {
       quesCount: Number,
       moduleId: Number,
       moduleName: String,
+      moduleTestStart: String,
+      moduleTestEnd: String,
       questions: [],
     },
     psychologistTest: {
@@ -394,13 +390,29 @@ export default {
   background-color: #ff5454;
 }
 .result__test {
-  font-weight: 700;
-  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background: #ffffff;
+  border: 0.5px solid #cecece;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.result__test div {
+  font-weight: 500;
+  font-size: 22px;
   line-height: 150%;
   text-align: center;
   color: #7cb500;
-  display: flex;
-  justify-content: center;
+  position: relative;
+}
+.result__test div::after {
+  content: "%";
+  position: absolute;
+  top: -10px;
+  right: -15px;
 }
 .progress__bar {
   position: relative;

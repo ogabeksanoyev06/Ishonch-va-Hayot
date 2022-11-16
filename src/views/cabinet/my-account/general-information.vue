@@ -30,11 +30,11 @@
           </div>
           <div class="input__block">
             <label class="input__block-label" for="login">
-              {{ $t("Enter") }}</label
+              {{ $t("Email") }}</label
             >
             <input
               class="input__block-input"
-              type="text"
+              type="email"
               id="login"
               v-model="user.data.result.login"
             />

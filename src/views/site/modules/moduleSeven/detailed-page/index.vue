@@ -10,7 +10,7 @@
                 МОДУЛЬ 7: КОНФИДЕНЦИАЛЬ-НОСТЬ И ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ ЛЖВ
               </p>
               <p style="margin-bottom: 10px">
-                {{ (filterReadModule.length / 2) * 100 }} %
+                {{ Math.floor((filterReadModule.length / 2) * 100) }} %
               </p>
               <div class="sidebar__prgoress">
                 <div
@@ -21,69 +21,56 @@
             </div>
             <div class="divider" />
             <!-- <p class="sidebar__title">Introduction</p> -->
-            <Accordion>
-              <AccordionItem
-                :class="sectionContentId === sectionContent.id ? 'active' : ''"
-                v-for="(
-                  sectionContent, sectionContentIndex
-                ) in sectionContentTree"
-                :key="sectionContentIndex"
-                @click="sectionContenActive(sectionContent.id)"
-              >
-                <template slot="accordion-trigger">
-                  <div class="module__accordion-header">
-                    <div class="module__accordion-numb">
-                      7.{{ sectionContentIndex + 1 }}
-                    </div>
+            <div
+              :class="sectionContentId === sectionContent.id ? 'active' : ''"
+              v-for="(
+                sectionContent, sectionContentIndex
+              ) in sectionContentTree"
+              :key="sectionContentIndex"
+              @click="sectionContenActive(sectionContent.id)"
+              style="cursor: pointer"
+            >
+              <div>
+                <div
+                  style="padding: 15px 15px 15px"
+                  v-for="(content, contentIndex) in sectionContent.contentList"
+                  :key="contentIndex"
+                  @click="selectContent(sectionContent.id, content.id)"
+                >
+                  <div
+                    class="module__accordion-item"
+                    :class="contentId === content.id ? 'active' : ''"
+                  >
                     <h4 class="module__accordion-text">
-                      {{ $t(sectionContent.name) }}
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/vajni.svg"
+                        alt=""
+                        v-if="content.name == 'Bажная информация'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/test.svg"
+                        alt=""
+                        v-else-if="content.name == 'Тест'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/book.svg"
+                        alt=""
+                        v-else
+                      />
+                      {{ $t(content.name) }}
                     </h4>
                   </div>
-                </template>
-                <template slot="accordion-content">
-                  <div
-                    style="padding: 0 15px 15px"
-                    v-for="(
-                      content, contentIndex
-                    ) in sectionContent.contentList"
-                    :key="contentIndex"
-                    @click="selectContent(sectionContent.id, content.id)"
-                  >
-                    <div
-                      class="module__accordion-item"
-                      :class="contentId === content.id ? 'active' : ''"
-                    >
-                      <h4 class="module__accordion-text">
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/vajni.svg"
-                          alt=""
-                          v-if="content.name == 'Bажная информация'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/test.svg"
-                          alt=""
-                          v-else-if="content.name == 'Тест'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/book.svg"
-                          alt=""
-                          v-else
-                        />
-                        {{ $t(content.name) }}
-                      </h4>
-                    </div>
-                  </div>
-                </template>
-              </AccordionItem>
-            </Accordion>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="content__main">
           <tab-1 v-show="isActive(0)" />
-          <tab-4 v-show="isActive(1)" />
+          <tab-2 v-show="isActive(1)" />
           <div>
             <div style="margin: 30px 0" class="divider" />
             <div class="content__main-btn">
@@ -133,21 +120,17 @@
   </div>
 </template>
 <script>
-import Accordion from "@/components/shared-components/Accordion.vue";
-import AccordionItem from "@/components/shared-components/AccordionItem.vue";
 import "@/assets/styles/pages/detailed-page.css";
 import Tab1 from "@/views/site/modules/moduleSeven/tab-content/tab-1.vue";
-import Tab4 from "@/views/site/modules/moduleSeven/tab-content/tab-4.vue";
+import Tab2 from "@/views/site/modules/moduleSeven/tab-content/tab-2.vue";
 import ReadModule from "@/service/readModule.service";
 import TokenService from "@/service/TokenService";
 import { mapState } from "vuex";
 export default {
   name: "detailedPage",
   components: {
-    Accordion,
-    AccordionItem,
     Tab1,
-    Tab4,
+    Tab2,
   },
   data() {
     return {
@@ -166,7 +149,7 @@ export default {
             },
             {
               id: 1,
-              name: "Руководящие принципы конфиденциальности и безопасности информации о ВИЧ",
+              name: "Упражнение",
             },
           ],
         },

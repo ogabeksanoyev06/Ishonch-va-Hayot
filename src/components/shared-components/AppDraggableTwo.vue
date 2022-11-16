@@ -19,7 +19,7 @@
               <draggable v-model="listOne" class="draggable__content-items2">
                 <transition-group type="transition" name="flip-list">
                   <div
-                    class="list-group-item"
+                    class="listGroup-item"
                     v-for="(element, i) in listOne"
                     :key="i"
                   >
@@ -30,9 +30,10 @@
             </td>
             <td>
               <div
-                class="list-group-item base"
+                class="listGroup-item base"
                 v-for="(element, i) in lists"
                 :key="i"
+                :id="`item-${i}`"
               >
                 {{ element.name }}
               </div>
@@ -41,7 +42,7 @@
               <draggable v-model="listTwo" class="draggable__content-items2">
                 <transition-group type="transition" name="flip-list">
                   <div
-                    class="list-group-item"
+                    class="listGroup-item"
                     v-for="(element, i) in listTwo"
                     :key="i"
                   >
@@ -56,10 +57,14 @@
     </div>
     <div class="draggable_footer">
       <p>{{ results }}</p>
-      <button @click="filterList">
+      <button @click="result" v-if="draggBtn">
         <img src="/icons/finish.svg" alt="" />
         <span style="color: #0f101d">{{ $t("Send") }}</span>
       </button>
+
+      <router-link :to="{ name: 'module-three' }" v-else>
+        <button class="btn_dragg">{{ $t("Module") }} 3</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -71,6 +76,7 @@ export default {
   components: { draggable },
   data() {
     return {
+      draggBtn: true,
       lists: [
         {
           id: 0,
@@ -156,20 +162,34 @@ export default {
     };
   },
   methods: {
+    result() {
+      this.results = this.filterList.length;
+      this.draggBtn = false;
+      this.filterList.forEach((item) => {
+        document.getElementById(`item-${item.id}`).classList.add("active");
+      });
+    },
+  },
+  computed: {
     filterList() {
-      this.count = this.lists.filter(
+      let count = this.lists.filter(
         (item, i) =>
           item.id === this.listOne[i].id &&
           item.id === this.listTwo[i].id &&
           this.listTwo[i].id === this.listOne[i].id
       );
-      this.results = this.count.length;
-      console.log(this.count);
+      return count;
     },
   },
+  mounted() {},
+  watch: {},
 };
 </script>
 <style scoped>
+.btn_dragg {
+  background: #00419e;
+  border-radius: 5px;
+}
 .draggable_footer {
   display: flex;
   align-items: center;
@@ -224,7 +244,7 @@ tbody td {
 tbody td:first-child {
   border-left: 0;
 }
-.list-group-item {
+.listGroup-item {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -233,11 +253,15 @@ tbody td:first-child {
   border: none;
   border-bottom: 1px solid #00419e;
 }
-.list-group-item:last-child {
+.listGroup-item:last-child {
   border-bottom: none;
 }
-.list-group-item.base {
+.listGroup-item.base {
   color: #ff6672;
+}
+.listGroup-item.active {
+  color: rgb(124, 175, 12);
+  font-weight: bold;
 }
 @media (max-width: 991px) {
   .table-block {

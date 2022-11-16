@@ -19,7 +19,12 @@
       </div>
       <draggable v-model="list" class="draggable__content-items2">
         <transition-group type="transition" name="flip-list">
-          <div class="list-group-item" v-for="(element, i) in list" :key="i">
+          <div
+            class="listGroup-item"
+            v-for="(element, i) in list"
+            :key="i"
+            :id="`item-${element.id}`"
+          >
             {{ element.name }}
           </div>
         </transition-group>
@@ -27,7 +32,7 @@
     </div>
     <div class="draggable_footer">
       <p>{{ results }}</p>
-      <button @click="filterList">
+      <button @click="result">
         <img src="/icons/finish.svg" alt="" />
         <span style="color: #0f101d">{{ $t("Send") }}</span>
       </button>
@@ -48,11 +53,11 @@ export default {
         },
         {
           id: 1,
-          name: "Отдышка",
+          name: "Одышка",
         },
         {
           id: 2,
-          name: "Покраснение глаз слезотечение",
+          name: "Покраснение глаз, слезотечение",
         },
         {
           id: 3,
@@ -64,7 +69,7 @@ export default {
         },
         {
           id: 5,
-          name: "Слабость утомляемость",
+          name: "Слабость, утомляемость",
         },
         {
           id: 6,
@@ -115,7 +120,7 @@ export default {
         },
         {
           id: 7,
-          name: "Обильное питье  не тереть место инъекции, не накладывать повязку, не мочить место инъекции",
+          name: "Обильное питье, не тереть место инъекции, не накладывать повязку, не мочить место инъекции",
         },
         {
           id: 8,
@@ -131,10 +136,17 @@ export default {
     };
   },
   methods: {
+    result() {
+      this.results = this.filterList.length;
+      this.filterList.forEach((item) => {
+        document.getElementById(`item-${item.id}`).classList.add("active");
+      });
+    },
+  },
+  computed: {
     filterList() {
-      this.count = this.lists.filter((item, i) => item.id === this.list[i].id);
-      this.results = this.count.length;
-      console.log(this.list);
+      let count = this.lists.filter((item, i) => item.id === this.list[i].id);
+      return count;
     },
   },
 };
@@ -177,11 +189,11 @@ export default {
 }
 .draggable__content-items1,
 .draggable__content-items2 {
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
 }
 .draggable__content-item1,
-.list-group-item {
+.listGroup-item {
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -192,12 +204,17 @@ export default {
   margin-bottom: 10px;
   min-height: 70px;
   border-radius: 10px;
+  min-height: 100px;
 }
 .draggable__content-item1 {
   border-color: blue;
   font-weight: 700;
 }
-.list-group-item {
+.listGroup-item.active {
+  color: rgb(124, 175, 12);
+  font-weight: bold;
+}
+.listGroup-item {
   cursor: pointer;
 }
 </style>

@@ -1,15 +1,49 @@
 <template>
   <div>
     <app-draggable-two />
+    <app-modal v-if="closeDancing" @close="closeModalDancing">
+      <div class="modal__wrap">
+        <div>
+          <div class="dancing__body">
+            <p class="dancing__text">
+              Для закрепления знаний давайте выполним упражнение
+            </p>
+            <div class="dancing__img">
+              <img src="/images/moduleBanner1.png" alt="" />
+            </div>
+          </div>
+          <button class="dancing__btn" @click="closeModalDancing">Ok</button>
+        </div>
+      </div>
+    </app-modal>
+    <AppModal v-if="finishModal" @close="closeModal">
+      <div class="modal__wrap">
+        <div class="modal__body">
+          <div class="dancing__body">
+            <p class="dancing__text">
+              Поздравляем с успешным прохождением 2го модуля! Вы отлично
+              справились!
+            </p>
+            <div class="dancing__img">
+              <img src="/images/moduleBanner1.png" alt="" />
+            </div>
+          </div>
+          <button class="dancing__btn" @click="closeModal">Ok</button>
+        </div>
+      </div>
+    </AppModal>
   </div>
 </template>
 <script>
 import AppDraggableTwo from "@/components/shared-components/AppDraggableTwo.vue";
+import AppModal from "@/components/shared-components/AppModal.vue";
 export default {
   name: "tab-7",
-  components: { AppDraggableTwo },
+  components: { AppDraggableTwo, AppModal },
   data() {
     return {
+      closeDancing: true,
+      finishModal: false,
       rawTests: {
         questions: [
           {
@@ -120,12 +154,9 @@ export default {
             ],
           },
         ],
-        subjectName: null,
-        maxBall: 60,
-        quesCount: 10,
-        beginDate: this.beginDate,
-        moduleId: 2,
-        moduleName: "module-two",
+        moduleTestStart: "Для закрепления знаний давайте выполним упражнение",
+        moduleTestEnd:
+          "Поздравляем с успешным прохождением 2го модуля! Вы отлично справились!",
       },
     };
   },
@@ -135,9 +166,49 @@ export default {
     },
   },
   methods: {
-    newDate() {
-      this.$emit("newDate");
+    closeModalDancing() {
+      this.closeDancing = false;
+    },
+    closeModal() {
+      this.finishModal = false;
+    },
+    testFinish() {
+      this.finishModal = true;
     },
   },
 };
 </script>
+<style scoped>
+.dancing__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+.dancing__text {
+  max-width: 503px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 130%;
+  text-align: center;
+  color: #00419e;
+}
+.dancing__img {
+  max-width: 160px;
+  width: 100%;
+}
+.dancing__img img {
+  width: 100%;
+  object-fit: contain;
+}
+.dancing__btn {
+  min-width: 65px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00419e;
+  margin: 0 auto;
+}
+</style>

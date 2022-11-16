@@ -1,12 +1,13 @@
 <template>
   <transition name="slide">
     <div class="module">
-      <img class="module__bg" src="/images/moduleBg.png" alt="" />
-      <img class="module__bg2" src="/images/moduleBg2.png" alt="" />
+      <!-- <img class="module__bg" src="/images/moduleBg.png" alt="" />
+      <img class="module__bg2" src="/images/moduleBg2.png" alt="" /> -->
       <div v-for="(item, index) in modules" :key="index" class="module__items">
         <modules-card
           :link="item.link"
           :title="item.title"
+          :sertificate="item.sertificate"
           :text="item.text"
           :photo="item.photo"
           :id="item.id"
@@ -103,6 +104,12 @@ export default {
           link: "module-nine",
           photo: "moduleImg9.png",
           tabCount: 1,
+        },
+        {
+          id: 10,
+          sertificate: "СЕРТИФИКАТ",
+          photo: "moduleImg10.png",
+          link: "module-one",
         },
       ],
     };

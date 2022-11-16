@@ -7,7 +7,7 @@
           <span>{{ testResult }}</span>
         </div>
         <div class="test__result-text">
-          <span>ОТЛИЧНО! НАЧНЕМ ПЕРВЫЙ МОДУЛЬ</span>
+          <span>{{ $t("PreTestStart") }}</span>
         </div>
         <button @click="goToModule" class="preTest_btn">
           {{ $t("ToBegin") }}
@@ -186,13 +186,13 @@ export default {
                   " Ранняя диагностика, современное оповещение о случаях заражения, изоляция ",
                 res_number: 17,
                 id: "emaple17",
-                isTrue: false,
+                isTrue: true,
               },
               {
                 suggestion: "больных, вакцинопрофилактика",
                 res_number: 18,
                 id: "emaple18",
-                isTrue: true,
+                isTrue: false,
               },
               {
                 suggestion:

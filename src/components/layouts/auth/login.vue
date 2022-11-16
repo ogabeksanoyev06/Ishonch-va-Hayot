@@ -18,25 +18,18 @@
     <form class="auth__login-form" @submit.prevent="loginToSystem">
       <div class="auth__login-form-group">
         <label for="login" class="auth__login-form-label">
-          {{ $t("Telephone") }}
+          {{ $t("Email") }}
         </label>
-        <div class="group_pre">
-          <div class="auth-input-group__prepend">998</div>
-          <input
-            type="text"
-            id="login"
-            class="auth__login-form-input"
-            :class="{ 'is-invalid': $v.request.login.$error }"
-            placeholder="(71)123-45-67"
-            v-model="request.login"
-            v-mask="'#########'"
-          />
-        </div>
+        <input
+          type="email"
+          id="login"
+          class="auth__login-form-input"
+          :class="{ 'is-invalid': $v.request.login.$error }"
+          placeholder="ogabeksanoyev@gmail.com"
+          v-model="request.login"
+        />
         <div v-if="$v.request.login.$error" class="invalid-feedback">
-          <span v-if="!$v.request.login.required"> Phone is required </span>
-          <span v-if="!$v.request.login.minLength">
-            The number of characters should be at least 9!
-          </span>
+          <span v-if="!$v.request.login.required"> Email is required </span>
         </div>
       </div>
       <div class="auth__login-form-group">

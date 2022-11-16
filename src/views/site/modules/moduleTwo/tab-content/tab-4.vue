@@ -1,13 +1,13 @@
 <template>
   <div class="tab_content">
     <div class="module_title">
-      {{$t("vaksina01")}}
+      {{ $t("vaksina01") }}
     </div>
     <div class="tab_content-text">
-      {{$t("vaksina02")}}
+      {{ $t("vaksina02") }}
     </div>
     <div class="tab_content-title my-3 text-center">
-      {{$t("vaksina03")}}
+      {{ $t("vaksina03") }}
     </div>
     <div
       class="tabImg"
@@ -17,7 +17,7 @@
     </div>
     <div class="tab_content-block mt-3">
       <div class="tab_content-title text-center">
-        {{$t("vaksina04")}}
+        <!-- {{$t("vaksina04")}} -->
       </div>
       <ul class="d-flex flex-wrap" style="max-width: 600px; width: 100%">
         <li class="me-4 mb-2">• Moderna;</li>
@@ -29,7 +29,7 @@
       </ul>
     </div>
     <div class="module_title">
-      {{$t("kat")}}
+      {{ $t("kat") }}
     </div>
     <ul class="tab-content_ul">
       <div>
@@ -43,17 +43,17 @@
       class="module_title bgTab"
       style="text-transform: none; text-align: center"
     >
-      {{$t("kat1")}}
+      {{ $t("kat1") }} :
     </div>
     <div class="tabImg" style="max-width: 800px">
       <img class="w-100" src="/images/tabImg/147.png" alt="" />
     </div>
     <div class="tab_content-text">
-      {{$t("kat2")}}
+      {{ $t("kat2") }}
     </div>
     <div class="impInfo_content">
       <img src="/svg/ImportantInfo.svg" alt="" />
-      <p style="max-width: 550px; width: 100%">{{$t("warring")}}</p>
+      <p style="max-width: 550px; width: 100%">{{ $t("warring") }}</p>
     </div>
     <Accordion :activeProp="0">
       <AccordionItem v-for="(item, i) in ImportantInformation" :key="i">
@@ -195,37 +195,6 @@ export default {
               id: 2,
               title:
                 "В большинстве случаев незначительные побочные эффекты – это нормально. ",
-            },
-          ],
-        },
-        {
-          id: 1,
-          name: "К распространенным побочным эффектам после вакцинации, которые свидетельствуют о том, что организм вырабатывает защиту от инфекции COVID-19, относятся",
-          text: [
-            {
-              id: 0,
-              title: "боль в руке;",
-            },
-            {
-              id: 1,
-              title: "небольшое повышение температуры;",
-            },
-            {
-              id: 2,
-              title: "диарея; ",
-            },
-            {
-              id: 3,
-              title: "головные боли;",
-            },
-            {
-              id: 4,
-              title: "боли в мышцах или суставах.",
-            },
-            {
-              id: 5,
-              title:
-                "Обратитесь в ваше медицинское учреждение, если в месте укола появилось покраснение или болезненные ощущения, которые усиливаются через 24 часа, или если побочные эффекты не проходят спустя несколько дней. Большинство побочных эффектов проходят сами по себе в течение нескольких дней. Справиться с побочными эффектами помогают отдых, обильное питье (без алкоголя) и при необходимости – прием лекарств для снятия боли и снижения температуры. ",
             },
           ],
         },

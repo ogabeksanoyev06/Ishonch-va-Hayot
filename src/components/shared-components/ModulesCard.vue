@@ -1,13 +1,17 @@
 <template>
-  <div class="app-card" :class="filterModuleId ? 'active' : ''" id="app-card">
-    <div class="Success_bage" v-if="filterModuleId"><span>Успешно</span></div>
+  <div class="app-card" id="app-card">
+    <!-- <div class="app-card" :class="filterModuleId ? 'active' : ''" id="app-card"> -->
+    <!-- <div class="Success_bage" v-if="filterModuleId"><span>Успешно</span></div> -->
     <div class="app-card__content">
       <div>
-        <div class="app-card__title">{{ $t("Module") }} {{ id }}</div>
+        <div class="app-card__title" v-if="title">
+          {{ $t("Module") }} {{ id }}
+        </div>
+        <div class="app-card__title" v-else>{{ sertificate }}</div>
         <div class="app-card__text">{{ $t(text) }}</div>
       </div>
 
-      <div>
+      <div v-if="tabCount">
         <p style="margin-bottom: 10px">
           {{ (filterReadModule?.length / tabCount) * 100 }} %
         </p>
@@ -27,6 +31,13 @@
           {{ $t("Details") }}
         </button>
       </div>
+      <button
+        v-else
+        class="app-card__btn"
+        :class="(isLoggedOn ? 'active' : '', preTest ? 'disabled' : '')"
+      >
+        Sertificate
+      </button>
     </div>
     <div class="app-card__photo">
       <img :src="`/images/${photo}`" alt="" />
@@ -46,6 +57,7 @@ export default {
   props: {
     id: Number,
     title: String,
+    sertificate: String,
     text: String,
     link: String,
     photo: String,

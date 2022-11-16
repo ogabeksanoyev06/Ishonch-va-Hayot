@@ -1,101 +1,125 @@
 <template>
   <div class="tab_content">
     <div class="ImportantInformation">
-      <div class="impInfo_content">
-        <img src="/svg/ImportantInfo.svg" alt="" />
-        <p style="max-width: 550px; width: 100%">
-          {{$t("Text7-1")}}
-        </p>
+      <div class="module_title">
+        КОНФИДЕНЦИАЛЬНОСТЬ И ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ ЛЖВ
       </div>
-      <Accordion :activeProp="0">
-        <AccordionItem>
-          <template slot="accordion-trigger">
-            <div class="module__accordion-header">
-              <div class="accordion-img">
-                <img src="/svg/lineIcon.svg" alt="" />
-              </div>
-              <h4 class="accordion-text">{{$t("Text5-1-1")}}</h4>
-            </div>
-          </template>
-          <template slot="accordion-content">
-            <div style="padding: 0 15px 15px">
-              <div class="accordion-item">
-                <h4 class="accordion-text">
-                  • {{$t("Text7-1-1")}}
-                </h4>
-                <h4 class="accordion-text">
-                  • {{$t("Text7-1-2")}}
-                </h4>
-                <h4 class="accordion-text">
-                  • {{$t("Text7-1-3")}}
-                </h4>
-              </div>
-            </div>
-          </template>
-        </AccordionItem>
-      </Accordion>
-      <div class="tab_content-title">{{$t("Text7-1-4")}}</div>
-      <div class="tab_content-text">
-        <strong class="strongColor">{{$t("Text7-1-4")}}—</strong> {{$t("Text7-1-5")}}
-      </div>
-      <div class="tab_content-text">
-        {{$t("Text7-1-6")}}
-      </div>
-      <div class="tab_content-text">
-        {{$t("Text7-1-7")}}
-      </div>
-      <div class="tab_content-block">
-        <div class="tab_content-title">
-          {{$t("Text7-1-8")}}
-        </div>
-        <div class="tab_content-text">
-          {{$t("Text7-1-9")}}
-        </div>
-      </div>
+      <div class="tab_content-text bgTab">ОСНОВНАЯ ИНФОРМАЦИЯ</div>
       <div class="content_flex">
-        <div class="tab_content-block content_flex-info">
-          <div class="tab_content-text">
-            <strong class="strongColor">{{$t("Text7-1-4")}} -</strong> {{$t("Text7-1-10")}}
-          </div>
-          <div class="tab_content-text">
-            {{$t("Text7-1-11")}}
-          </div>
+        <div class="tab_content-text" style="flex: 1; margin-right: 20px">
+          <strong class="strongColor">Конфиденциальность</strong> — это
+          одновременно юридическое и этическое понятие. Юридическое понятие
+          относится к правовой защите которое было предоставлено лицу для
+          контроля как доступа к личным данным, так и их использования
+          информации и обеспечивает общую основу, в рамках которой как
+          конфиденциальность, так и безопасность реализована.
         </div>
-        <div class="content_flex-img" style="max-width: 420px">
+        <div class="content_flex-img" style="max-width: 300px">
           <img src="/images/tabImg/129.jpg" alt="" />
         </div>
       </div>
+      <div class="tab_content-text">
+        {{ $t("Text7-1-6") }}
+      </div>
+      <div class="tab_content-text">
+        {{ $t("Text7-1-7") }}
+      </div>
       <div class="tab_content-block">
-        <div class="tab_content-title">{{$t("Text7-1-12")}}</div>
+        <div class="tab_content-title">
+          {{ $t("Text7-1-8") }}
+        </div>
+        <div class="tabImg" style="max-width: 600px">
+          <img src="/images/tabImg/170.png" alt="" />
+        </div>
+      </div>
+      <div class="tab_content-block">
+        <div class="tab_content-title">Физическая безопасность</div>
         <div class="tab_content-text">
-          {{$t("Text7-1-13")}}
+          {{ $t("Text7-1-13") }}
         </div>
       </div>
-      <div class="tab_content-title text-center">{{$t("Text7-1-14")}}</div>
-      <div class="tabImg" style="max-width: 650px">
-        <img src="/images/tabImg/130.jpg" alt="" />
+      <div class="tab_content-title">Электронная безопасность</div>
+      <div class="tab_content-text">
+        Доступ к персональным компьютерам, ноутбукам и серверам должен быть
+        защищен с помощью паролей, брелоков, смарт-карт или других средств
+        защиты доступа к хранимой информации. Данные могут храниться в
+        зашифрованном формате и содержать другие элементы управления доступом,
+        такие как пароли и идентификаторы пользователей. Данные, хранящиеся в
+        локальных или глобальных сетях с большим количеством компьютеров или
+        доступом в Интернет, потребуют использования таких технологий, как
+        брандмауэры и маршрутизаторы, чтобы ограничить доступ тем, кто имеет
+        право на данные. Различные уровни доступа могут быть созданы в
+        зависимости от различных целей для информации. Передача данных: для
+        электронных данных это включает использование карт памяти, смарт-карт,
+        персональных цифровых помощников (КПК), телефонных разговоров,
+        зашифрованной электронной почты, защищенного протокола передачи файлов
+        (ftp) или защищенного веб-сервисы. Меры безопасности, необходимые в
+        таких ситуациях, включают шифрование и использование пар открытого и
+        закрытого ключей, виртуальные частные сети (VPN) и другие
+        соответствующие меры.
       </div>
-      <div class="tab_content-title text-center mt-5">
-        {{$t("Text7-1-15")}}
-      </div>
-      <ul class="tab-content_ul">
-        <div>
-          <li v-for="(item, i) in items" :key="i" class="tab-content_li">
-            <img src="/svg/virusIcon.svg" alt="" />
-            <span>{{$t(item.name) }}</span>
-          </li>
-        </div>
-      </ul>
-      <div class="tabImg" style="max-width: 620px">
+
+      <div class="tabImg" style="max-width: 720px">
         <img src="/images/tabImg/131.jpg" alt="" />
       </div>
       <div class="tab_content-block">
-        <div class="tab_content-title">{{$t("Text7-1-16")}}</div>
-        <div class="tab_content-text">
-          {{$t("Text7-1-17")}}
+        <div class="tab_content-title">
+          Руководящие принципы конфиденциальности и безопасности информации о
+          ВИЧ
         </div>
         <div class="tab_content-text">
-          {{$t("Text7-1-18")}}
+          Процедуры получения данных о ВИЧ должны соответствовать международным
+          этическим и правовым стандартам. Фундаментальные этические и правовые
+          стандарты защиты частной жизни и конфиденциальности содержатся в
+          соответствующих документах по правам человека. Право на
+          неприкосновенность частной жизни упоминается в статье 12 Всеобщей
+          декларации прав человека; Статья 17 Международного пакта о гражданских
+          и политических правах; Статья 37 Конвенции о правах ребенка.
+        </div>
+        <div class="tab_content-text">
+          Еще одним источником международных стандартов является Всеобщая
+          декларация ЮНЕСКО о биоэтике и правах человека. В статье 9 Декларации,
+          озаглавленной «Неприкосновенность частной жизни и конфиденциальность»,
+          говорится: «Необходимо уважать частную жизнь заинтересованных лиц и
+          конфиденциальность их личной информации. Насколько это возможно, такая
+          информация не должна использоваться или разглашаться в целях, отличных
+          от тех, для которых она была собрана или для которых было получено
+          согласие, в соответствии с международным правом, в частности
+          международным правом в области прав человека».
+        </div>
+      </div>
+      <div class="tab_content-block">
+        <div class="tab_content-title">
+          Принципы конфиденциальности и безопасности информации о ВИЧ
+        </div>
+        <div class="tab_content-text">
+          <strong class="strongColor">
+            Врачебная тайна (медицинская тайна)
+          </strong>
+          Информация о факте обращения за медицинской помощью, состоянии
+          здоровья гражданина, диагнозе его заболевания иные сведения,
+          полученные при его обследовании и лицензии, составляют врачебную
+          тайну. Предоставление сведений, составляющих врачебную тайну, без
+          согласия гражданина или его законного представителя допускается: в
+          целях обследования и лечения гражданина, не способного из-за своего
+          состояния выразить свою волю; при угрозе распространения инфекционных
+          заболеваний массовых отравлений и поражений; <br />
+          · по запросу органов дознания и следствия, прокуратуры и суда в связи
+          с проведением расследования или судебным разбирательством; <br />
+          · в случае оказания помощи несовершеннолетнему в возрасте до
+          пятнадцати лет для информирования его родителей или законных
+          представителей; <br />
+          · при наличии оснований, позволяющих полагать, что вред здоровью
+          гражданина причинен в результате противоправных действий либо
+          несчастного случая. <br />
+          <br />
+          Лица, которым в установленном порядке переданы сведения, составляющие
+          врачебную тайну, наравне с медицинскими и фармацевтическими
+          работниками несут за разглашение врачебной тайны ответственность в
+          соответствии с законом.
+        </div>
+        <div class="tabImg" style="max-width: 820px">
+          <img src="/images/tabImg/171.png" alt="" />
         </div>
       </div>
     </div>
@@ -103,36 +127,11 @@
 </template>
 <script>
 import "@/assets/styles/pages/detailed-tab.css";
-import Accordion from "@/components/shared-components/Accordion.vue";
-import AccordionItem from "@/components/shared-components/AccordionItem.vue";
 export default {
   name: "tab-1",
-  components: { Accordion, AccordionItem },
+  components: {},
   data() {
-    return {
-      items: [
-        {
-          id: 0,
-          name: "в целях обследования и лечения гражданина, не способного из-за своего состояния выразить свою волю;",
-        },
-        {
-          id: 1,
-          name: "при угрозе распространения инфекционных заболеваний массовых отравлений и поражений;",
-        },
-        {
-          id: 2,
-          name: "по запросу органов дознания и следствия, прокуратуры и суда в связи с проведением расследования или судебным разбирательством;",
-        },
-        {
-          id: 3,
-          name: "в случае оказания помощи несовершеннолетнему в возрасте до пятнадцати лет для информи-рования его родителей или законных представителей;",
-        },
-        {
-          id: 4,
-          name: "при наличии оснований, позволяющих полагать, что вред здоровью гражданина причинен в результате противоправных действий либо несчастного случая.",
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>
@@ -144,6 +143,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 20px 0;
 }
 .content_flex-info {
   width: 100%;

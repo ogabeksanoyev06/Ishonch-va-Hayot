@@ -41,24 +41,24 @@
       </AccordionItem>
     </Accordion> -->
     <div class="tab_content-block">
-      <div class="module_title">{{$t("2.1")}}</div>
+      <div class="module_title">{{ $t("2.1") }}</div>
       <div class="module_title bgTab" style="display: inline-block">
-       {{$t("TextModule9-6")}}
+        {{ $t("TextModule9-6") }}
       </div>
       <div class="tab_content-text">
-        <strong class="strongColor">COVID-19</strong> — {{$t("cov")}}
+        <strong class="strongColor">COVID-19</strong> — {{ $t("cov") }}
       </div>
     </div>
     <div class="tabImg" style="max-width: 900px">
       <img class="w-100" src="/images/tabImg/115.jpg" alt="" />
     </div>
     <div class="tab_content-text" style="margin-bottom: 20px">
-      {{$t("odamlar")}}
+      {{ $t("odamlar") }}
     </div>
     <div class="content_flex mb-3">
       <div class="content_flex-info">
         <div class="tab_content-title" style="color: #00419e">
-          {{$t("odamlar1")}}
+          {{ $t("odamlar1") }}
         </div>
       </div>
       <div class="content_flex-img">
@@ -69,21 +69,12 @@
       </div>
     </div>
     <div class="tab_content-text">
-      <strong class="strongColor">{{$t("odamlar1")}}</strong> <br />
-      {{$t("odamlar2")}}
+      {{ $t("odamlar2") }}
     </div>
     <div class="tab_content-block mt-3">
       <div class="tab_content-title">
-        {{$t("gruppa")}}
+        {{ $t("gruppa") }}
       </div>
-      <ul class="tab-content_ul">
-        <div>
-          <li v-for="(item, i) in items3" :key="i" class="tab-content_li">
-            <img src="/svg/virusIcon.svg" alt="" />
-            <span>{{ $t(item.name) }}</span>
-          </li>
-        </div>
-      </ul>
     </div>
     <div class="tabImg">
       <img class="w-100" src="/images/tabImg/113.jpg" alt="wewe" />
@@ -95,12 +86,12 @@
       <img src="images/tabBaground2.png" alt="" />
     </div>
     <div class="tab_content-block mt-3">
-      <div class="tab_content-title">{{$t("gruppa1")}}</div>
+      <div class="tab_content-title">{{ $t("gruppa1") }}</div>
       <div class="tab_content-text">
-        {{$t("gruppa2")}}
+        {{ $t("gruppa2") }}
       </div>
       <div class="tab_content-text">
-        {{$t("gruppa3")}}
+        {{ $t("gruppa3") }}
       </div>
       <div
         class="tabImg"
@@ -112,10 +103,10 @@
     <div class="tab_content-block">
       <div class="tab_content-title">Иммунитет</div>
       <div class="tab_content-text">
-        {{$t("imunitet1")}}
+        {{ $t("imunitet1") }}
       </div>
       <div class="tab_content-text">
-        {{$t("imunitet2")}}
+        {{ $t("imunitet2") }}
       </div>
       <div
         class="tabImg"
@@ -126,7 +117,7 @@
     </div>
     <div class="tab_content-block">
       <div class="tab_content-title">
-        {{$t("19")}}
+        {{ $t("19") }}
       </div>
       <ul class="tab-content_ul">
         <div>

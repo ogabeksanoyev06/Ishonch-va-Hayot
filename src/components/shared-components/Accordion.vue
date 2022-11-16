@@ -1,5 +1,5 @@
 <template>
-  <ul class="accordion">
+  <ul class="accordion" style="padding-top: 15px">
     <slot></slot>
   </ul>
 </template>

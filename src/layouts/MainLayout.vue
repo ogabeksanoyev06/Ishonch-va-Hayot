@@ -4,6 +4,22 @@
     <div class="page__wrap">
       <router-view />
     </div>
+    <div class="footer__icons">
+      <div class="footer__items">
+        <div class="footer__item">
+          <img src="/svg/icons1.svg" alt="" />
+        </div>
+        <div class="footer__item">
+          <img src="/svg/icons2.svg" alt="" />
+        </div>
+        <div class="footer__item">
+          <img src="/svg/icons3.svg" alt="" />
+        </div>
+        <div class="footer__item">
+          <img src="/svg/icons4.svg" alt="" />
+        </div>
+      </div>
+    </div>
     <AppFooter />
     <notifications group="admin" position="top right" :width="350" />
   </div>
@@ -51,12 +67,29 @@ export default {
 </style>
 
 <style>
-.vue-notification {
-  padding: 10px;
-  margin: 5px 5px 5px;
-  font-size: 16px;
-  color: #ffffff;
-  background: #44a4fc;
-  border-left: 5px solid #187fe7;
+.footer__icons {
+  display: flex;
+  justify-content: center;
+  background-color: #f2f7f2;
+  padding: 30px 0;
+  margin-top: 30px;
+}
+.footer__items {
+  display: flex;
+}
+.footer__item {
+  max-width: 120px;
+  width: 100%;
+  margin: 10px;
+}
+.footer__item img {
+  width: 100%;
+  object-fit: contain;
+}
+@media (max-width: 576px) {
+  .footer__items {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 </style>

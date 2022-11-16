@@ -158,6 +158,10 @@ export default {
         quesCount: 5,
         beginDate: this.beginDate,
         moduleId: 6,
+        moduleTestStart:
+          "Отлично! Давайте рассмотрим все этические принципы оказания помощи ЛЖВ в период пандемии COVID-19 подробно",
+        moduleTestEnd:
+          "Для закрепления ваших знаний по модулю №6 предлагаем пройти тест",
       },
     };
   },

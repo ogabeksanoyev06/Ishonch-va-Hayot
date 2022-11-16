@@ -11,7 +11,7 @@
                 РАБОТНИКА В УСЛОВИЯХ ПАНДЕМИИ COVID-19
               </p>
               <p style="margin-bottom: 10px">
-                {{ (filterReadModule.length / 3) * 100 }} %
+                {{ Math.floor((filterReadModule.length / 3) * 100) }} %
               </p>
               <div class="sidebar__prgoress">
                 <div
@@ -22,64 +22,51 @@
             </div>
             <div class="divider" />
             <!-- <p class="sidebar__title">Introduction</p> -->
-            <Accordion>
-              <AccordionItem
-                v-for="(
-                  sectionContent, sectionContentIndex
-                ) in sectionContentTree"
-                :key="sectionContentIndex"
-                :class="sectionContentId === sectionContent.id ? 'active' : ''"
-                @click="sectionContenActive(sectionContent.id)"
-              >
-                <template slot="accordion-trigger">
-                  <div class="module__accordion-header">
-                    <div class="module__accordion-numb">
-                      1.{{ sectionContentIndex + 1 }}
-                    </div>
+            <div
+              v-for="(
+                sectionContent, sectionContentIndex
+              ) in sectionContentTree"
+              :key="sectionContentIndex"
+              :class="sectionContentId === sectionContent.id ? 'active' : ''"
+              @click="sectionContenActive(sectionContent.id)"
+              style="cursor: pointer"
+            >
+              <div>
+                <div
+                  style="padding: 15px 15px 15px"
+                  v-for="(content, contentIndex) in sectionContent.contentList"
+                  :key="contentIndex"
+                  @click="selectContent(sectionContent.id, content.id)"
+                >
+                  <div
+                    class="module__accordion-item"
+                    :class="contentId === content.id ? 'active' : ''"
+                  >
                     <h4 class="module__accordion-text">
-                      {{ $t(sectionContent.name) }}
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/vajni.svg"
+                        alt=""
+                        v-if="content.name == 'Bажная информация'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/test.svg"
+                        alt=""
+                        v-else-if="content.name == 'Тест'"
+                      />
+                      <img
+                        class="module__accordion-img"
+                        src="/icons/book.svg"
+                        alt=""
+                        v-else
+                      />
+                      {{ $t(content.name) }}
                     </h4>
                   </div>
-                </template>
-                <template slot="accordion-content">
-                  <div
-                    style="padding: 0 15px 15px"
-                    v-for="(
-                      content, contentIndex
-                    ) in sectionContent.contentList"
-                    :key="contentIndex"
-                    @click="selectContent(sectionContent.id, content.id)"
-                  >
-                    <div
-                      class="module__accordion-item"
-                      :class="contentId === content.id ? 'active' : ''"
-                    >
-                      <h4 class="module__accordion-text">
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/vajni.svg"
-                          alt=""
-                          v-if="content.name == 'Bажная информация'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/test.svg"
-                          alt=""
-                          v-else-if="content.name == 'Тест'"
-                        />
-                        <img
-                          class="module__accordion-img"
-                          src="/icons/book.svg"
-                          alt=""
-                          v-else
-                        />
-                        {{ $t(content.name) }}
-                      </h4>
-                    </div>
-                  </div>
-                </template>
-              </AccordionItem>
-            </Accordion>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="content__main">
@@ -135,8 +122,6 @@
   </div>
 </template>
 <script>
-import Accordion from "@/components/shared-components/Accordion.vue";
-import AccordionItem from "@/components/shared-components/AccordionItem.vue";
 import Tab1 from "@/views/site/modules/moduleEight/tab-content/tab-1.vue";
 import Tab5 from "@/views/site/modules/moduleEight/tab-content/tab-5.vue";
 import Tab11 from "@/views/site/modules/moduleEight/tab-content/tab-11.vue";
@@ -147,8 +132,6 @@ import "@/assets/styles/pages/detailed-page.css";
 export default {
   name: "detailedPage",
   components: {
-    Accordion,
-    AccordionItem,
     Tab1,
     Tab5,
     Tab11,
@@ -168,22 +151,10 @@ export default {
               id: 0,
               name: "Введение. Определение и основные принципы эффективной коммуникации в условиях пандемии COVID-19 ",
             },
-          ],
-        },
-        {
-          id: 1,
-          name: "Основные навыки эффективного общения: коммуникативные барьеры, невербальное...",
-          contentList: [
             {
               id: 1,
               name: "Основные навыки эффективного общения: коммуникативные барьеры, невербальное общение, активное слушание, сопереживание и преодоление стигмы, открытые и закрытые вопросы, влияние факторов внешней среды.",
             },
-          ],
-        },
-        {
-          id: 2,
-          name: "Тест",
-          contentList: [
             {
               id: 2,
               name: "Тест",

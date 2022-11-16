@@ -1,7 +1,10 @@
 <template>
   <div class="tab_content">
     <div class="module_title">Права человека и COVID-19</div>
-    <div class="tab_content-text">
+    <div
+      class="tab_content-text bgTab w-100 text-center"
+      style="font-size: 24px"
+    >
       На передовой борьбе с нынешней пандемией находятся три права:
     </div>
     <div class="tab_content-block">
@@ -55,6 +58,9 @@
           частного сектора об использовании их помещений и оборудования для
           борьбы с пандемией.
         </div>
+        <div class="tabImg" style="max-width: 700px">
+          <img src="/images/tabImg/166.png" alt="" />
+        </div>
       </div>
       <div class="tab_content-block">
         <div class="tab_content-title">Свобода передвижения</div>
@@ -105,5 +111,13 @@ export default {
 <style scoped>
 .tab_content-text {
   margin-bottom: 10px;
+}
+.tabImg {
+  width: 100%;
+  margin: 20px auto;
+}
+.tabImg img {
+  width: 100%;
+  object-fit: contain;
 }
 </style>

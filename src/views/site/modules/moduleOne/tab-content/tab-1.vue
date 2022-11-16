@@ -38,21 +38,15 @@
         <strong class="strongColor">Грипп</strong> – {{ $t("Gripp") }}
       </div>
     </div>
-    <ul class="tab-content_ul">
-      <div class="content_flex-info">
-        <li v-for="(item, i) in items1" :key="i" class="tab-content_li">
-          <img src="/svg/virusIcon.svg" alt="" />
-          <span>{{ $t(item.name) }}</span>
-        </li>
-      </div>
-      <div class="content_flex-img">
-        <img
-          src="/images/tabImg/image 143.png"
-          style="max-width: 500px; width: 100%; margin: 10px auto"
-          alt=""
-        />
-      </div>
-    </ul>
+
+    <div class="d-flex justify-content-center">
+      <img
+        src="/images/tabImg/image 143.png"
+        style="max-width: 300px; width: 100%; margin: 10px auto"
+        alt=""
+      />
+    </div>
+
     <div class="tab_content-block">
       <div class="tab_content-text">
         <strong class="strongColor">Грипп </strong> – {{ $t("Bazan") }}

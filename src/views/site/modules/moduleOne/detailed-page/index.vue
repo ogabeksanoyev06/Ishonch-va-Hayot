@@ -11,7 +11,7 @@
               {{ $t("infeksiya") }}
             </p>
             <p style="margin-bottom: 10px">
-              {{ (filterReadModule.length / 6) * 100 }} %
+              {{ Math.floor((filterReadModule.length / 6) * 100) }} %
             </p>
             <div class="sidebar__prgoress">
               <div
@@ -22,72 +22,60 @@
           </div>
           <div class="divider" />
           <!-- <p class="sidebar__title">Introduction</p> -->
-          <Accordion>
-            <AccordionItem
-              v-for="(
-                sectionContent, sectionContentIndex
-              ) in sectionContentTree"
-              :key="sectionContentIndex"
-              :class="sectionContentId === sectionContent.id ? 'active' : ''"
-              @click="sectionContenActive(sectionContent.id)"
-            >
-              <template slot="accordion-trigger">
-                <div class="module__accordion-header">
-                  <div class="module__accordion-numb">
-                    1.{{ sectionContentIndex + 1 }}
-                  </div>
-                  <h4 class="module__accordion-text">
-                    {{ $t(sectionContent.name) }}
-                  </h4>
-                </div>
-              </template>
-              <template slot="accordion-content">
+
+          <div
+            v-for="(sectionContent, sectionContentIndex) in sectionContentTree"
+            :key="sectionContentIndex"
+            :class="sectionContentId === sectionContent.id ? 'active' : ''"
+            @click="sectionContenActive(sectionContent.id)"
+            style="cursor: pointer"
+          >
+            <div>
+              <div
+                style="padding: 15px 15px 15px"
+                v-for="(content, contentIndex) in sectionContent.contentList"
+                :key="contentIndex"
+                @click="selectContent(sectionContent.id, content.id)"
+              >
                 <div
-                  style="padding: 0 15px 15px"
-                  v-for="(content, contentIndex) in sectionContent.contentList"
-                  :key="contentIndex"
-                  @click="selectContent(sectionContent.id, content.id)"
+                  style="justify-content: space-between"
+                  class="module__accordion-item"
+                  :class="contentId === content.id ? 'active' : ''"
                 >
-                  <div
-                    style="justify-content: space-between"
-                    class="module__accordion-item"
-                    :class="contentId === content.id ? 'active' : ''"
-                  >
-                    <div class="d-flex">
-                      <img
-                        class="module__accordion-img"
-                        src="/icons/vajni.svg"
-                        alt=""
-                        v-if="content.name == 'Bажная информация'"
-                      />
-                      <img
-                        class="module__accordion-img"
-                        src="/icons/test.svg"
-                        alt=""
-                        v-else-if="content.name == 'Тест'"
-                      />
-                      <img
-                        class="module__accordion-img"
-                        src="/icons/book.svg"
-                        alt=""
-                        v-else
-                      />
-                      <h4 class="module__accordion-text">
-                        {{ $t(content.name) }}
-                      </h4>
-                    </div>
+                  <div class="d-flex">
                     <img
-                      v-if="
-                        filterReadModule[content.id]?.paragraphId === content.id
-                      "
-                      src="/icons/check.svg"
+                      class="module__accordion-img"
+                      src="/icons/vajni.svg"
                       alt=""
+                      v-if="content.name == 'Bажная информация'"
                     />
+                    <img
+                      class="module__accordion-img"
+                      src="/icons/test.svg"
+                      alt=""
+                      v-else-if="content.name == 'Тест'"
+                    />
+                    <img
+                      class="module__accordion-img"
+                      src="/icons/book.svg"
+                      alt=""
+                      v-else
+                    />
+                    <h4 class="module__accordion-text">
+                      {{ $t(content.name) }}
+                    </h4>
                   </div>
+                  <img
+                    v-if="
+                      filterReadModule[content.id]?.paragraphId === content.id
+                    "
+                    src="/icons/check.svg"
+                    alt=""
+                  />
                 </div>
-              </template>
-            </AccordionItem>
-          </Accordion>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="content">
@@ -147,8 +135,6 @@
   </div>
 </template>
 <script>
-import Accordion from "@/components/shared-components/Accordion.vue";
-import AccordionItem from "@/components/shared-components/AccordionItem.vue";
 import Tab1 from "../tab-content/tab-1.vue";
 import Tab6 from "../tab-content/tab-6.vue";
 import Tab7 from "../tab-content/tab-7.vue";
@@ -163,8 +149,6 @@ import { mapMutations, mapState } from "vuex";
 export default {
   name: "detailedPage",
   components: {
-    Accordion,
-    AccordionItem,
     Tab1,
     Tab6,
     Tab7,
@@ -189,12 +173,6 @@ export default {
               name: "Основная информация",
               isActive: true,
             },
-          ],
-        },
-        {
-          id: 1,
-          name: "Симптомы ОРВИ и гриппа",
-          contentList: [
             {
               id: 1,
               name: "Типичные симптомы ОРВИ и Гриппа",
@@ -205,12 +183,6 @@ export default {
               name: "Упражнение",
               isActive: true,
             },
-          ],
-        },
-        {
-          id: 2,
-          name: "Меры профилактики ОРВИ и гриппа",
-          contentList: [
             {
               id: 3,
               name: "Меры профилактики ОРВИ и гриппа",

@@ -6,6 +6,7 @@
         class="tests__results-item"
         v-for="(item, idx) in modules"
         :key="idx"
+        :class="filterModuleId !== null ? 'active' : ''"
       >
         <div class="tests__module-title">
           {{ $t("Module") }} {{ item.id }}: {{ item.text }}
@@ -287,13 +288,16 @@ export default {
   margin-bottom: 30px;
 }
 .tests__results-item {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #e5ecf5;
   border-radius: 10px;
   padding: 30px;
   margin-bottom: 20px;
+}
+.tests__results-item.active {
+  display: flex;
 }
 .tests__module-title {
   font-weight: 700;

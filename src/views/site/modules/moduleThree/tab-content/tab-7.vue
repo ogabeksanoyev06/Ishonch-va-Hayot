@@ -203,7 +203,8 @@ export default {
         quesCount: 10,
         beginDate: this.beginDate,
         moduleId: 3,
-      },
+        moduleName: "module-three",
+        },
     };
   },
   props: {

@@ -20,7 +20,7 @@
         <div class="content">
           <div class="sidebar">
             <div class="account__details text-center">
-              <div class="account__photo">
+              <!-- <div class="account__photo">
                 <div class="account__photo-wrap">
                   <div class="account__photo-empty" v-if="!hasImage">
                     <img
@@ -50,7 +50,7 @@
                     </image-uploader>
                   </transition>
                 </div>
-              </div>
+              </div> -->
               <p class="midlle__name">
                 {{
                   user.data.result.firstName + " " + user.data.result.lastName
@@ -93,20 +93,19 @@ import AppFooter from "@/components/layouts/default/app-footer/AppFooter";
 import AppHeader from "@/components/layouts/default/app-header/AppHeader";
 import TokenService from "@/service/TokenService";
 import "../assets/styles/pages/cabinet.css";
-import ImageUploader from "vue-image-upload-resize";
 import { mapActions, mapMutations, mapState } from "vuex";
 import axios from "axios";
 
 export default {
   name: "AppCabinet",
-  components: { AppHeader, AppFooter, ImageUploader },
+  components: { AppHeader, AppFooter },
   data() {
     return {
       hasImage: false,
       sidebarMenu: [
         {
           title: "Основные сведения",
-          path: "/cabinet",   
+          path: "/cabinet",
         },
         {
           title: "Результаты теста",

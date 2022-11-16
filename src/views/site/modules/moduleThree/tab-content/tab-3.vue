@@ -1,9 +1,26 @@
 <template>
   <div class="tab_content">
     <div>
-      <div class="module_title">{{$t("module3.1")}}</div>
+      <div class="module_title">{{ $t("module3.1") }}</div>
       <div class="tab_content-text">
-        {{$t("module3.2")}}
+        Возбудители острых респираторных инфекций (ОРИ) высоко заразны и
+        передаются чаще всего воздушно-капельным путём, возможен также
+        контактно-бытовой путь передачи. При чихании и кашле в воздухе вокруг
+        человека распространяются микро капли его слюны, мокроты, выделения из
+        носа, содержащие вирус - возбудитель ОРИ. Более крупные капли оседают на
+        окружающих предметах, мелкие - способны сохраняться в воздухе и
+        переноситься на расстояния до нескольких сот метров, при этом вирусы
+        сохраняют способность к заражению от нескольких часов до нескольких
+        дней. Из этого следует, что основные способы защиты при ОРИ направлены
+        на предотвращение контакта здоровых людей с выделениями больного
+        человека, содержащими вирус.
+      </div>
+      <div class="tab_content-text">
+        Доказано, что соблюдение следующих простых правил позволит существенно
+        снизить риск заражения и дальнейшего распространения инфекции.
+      </div>
+      <div class="tab_content-text">
+        {{ $t("module3.2") }}
       </div>
       <ul class="tab-content_ul">
         <div>
@@ -15,19 +32,22 @@
       </ul>
       <div class="tab_content-block">
         <div class="tab_content-title">
-          {{$t("module3.2")}}
+          {{ $t("module3.2") }}
         </div>
         <div class="tab_content-text">
-          <strong class="strongColor">{{$t("module3.3")}}</strong>. {{$t("module3.4")}}
+          <strong class="strongColor">{{ $t("module3.3") }}</strong
+          >. {{ $t("module3.4") }}
         </div>
       </div>
       <div class="tab_content-text mb-3">
-        <strong class="strongColor">{{$t("module3.5")}}</strong>,{{$t("module3.6")}}
+        <strong class="strongColor">{{ $t("module3.5") }}</strong
+        >,{{ $t("module3.6") }}
       </div>
       <div class="tab_content-text mb-3">
-        <strong class="strongColor">{{$t("module3.7")}} </strong> {{$t("module3.8")}}
+        <strong class="strongColor">{{ $t("module3.7") }} </strong>
+        {{ $t("module3.8") }}
       </div>
-      <div class="tab_content-title">{{$t("module3.9")}}</div>
+      <div class="tab_content-title">{{ $t("module3.9") }}</div>
       <ul class="tab-content_ul">
         <div>
           <li v-for="(item, i) in items" :key="i" class="tab-content_li">
@@ -36,7 +56,7 @@
           </li>
         </div>
       </ul>
-      <div class="tab_content-title">{{$t("module3.10")}}</div>
+      <div class="tab_content-title">{{ $t("module3.10") }}</div>
       <div class="tabImg" style="max-width: 900px">
         <img src="/images/tabImg/120.jpg" alt="" />
       </div>

@@ -74,6 +74,7 @@ export default {
 .accordion__item {
   cursor: pointer;
   position: relative;
+  list-style: none;
 }
 
 .accordion__trigger {

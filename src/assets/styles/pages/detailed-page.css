@@ -24,6 +24,7 @@
   border: 1px solid #e5ecf5 !important;
   border-radius: 10px;
   overflow: hidden;
+  background-color: #fff;
 }
 .sidebar__title {
   background-color: #598fdb;

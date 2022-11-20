@@ -1,19 +1,21 @@
 <template>
   <div class="detailed-page">
     <div class="container-fluid">
-      <button class="prevDetailed" @click="detailedPages">Hазад</button>
+      <button class="prevDetailed" @click="detailedPages">
+        {{ $t("orqaga") }}
+      </button>
       <div class="content">
         <div class="sidebar">
           <div class="module__accordion">
             <div class="sidebar__title">
-              <p>МОДУЛЬ 6: COVID-19 И ПРАВА ЧЕЛОВЕКА</p>
+              <p>{{ $t("module6") }}</p>
               <p style="margin-bottom: 10px">
-                {{ Math.floor((filterReadModule.length / 5) * 100) }} %
+                {{ Math.floor((filterReadModule.length / 4) * 100) }} %
               </p>
               <div class="sidebar__prgoress">
                 <div
                   class="sidebar__prgoress-bg"
-                  :style="{ width: (filterReadModule.length / 5) * 100 + '%' }"
+                  :style="{ width: (filterReadModule.length / 4) * 100 + '%' }"
                 ></div>
               </div>
             </div>
@@ -101,14 +103,14 @@
                     fill="#0F101D"
                   />
                 </svg>
-                <span style="margin-left: 10px"> Назад </span>
+                <span style="margin-left: 10px"> {{ $t("orqaga") }} </span>
               </button>
               <button
                 class="content__main-next"
                 v-if="activeTab !== 3"
                 @click="activeTabList(activeTab + 1)"
               >
-                <span style="margin-right: 10px">Далее</span>
+                <span style="margin-right: 10px">{{ $t("keyi") }}</span>
                 <svg
                   width="8"
                   height="12"
@@ -159,7 +161,7 @@ export default {
           contentList: [
             {
               id: 0,
-              name: "Основные принципы медицинской этики",
+              name: "Основные принципы медицинской этики.",
             },
             {
               id: 1,
@@ -218,6 +220,9 @@ export default {
       if (this.activeTab === tab) {
         this.isActive(true);
       }
+    },
+    readResultModul() {
+      this.$store.dispatch("getReadModule", TokenService.headersToken());
     },
   },
   computed: {

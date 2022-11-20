@@ -6,7 +6,13 @@
         class="tests__results-item"
         v-for="(item, idx) in modules"
         :key="idx"
-        :class="filterModuleId !== null ? 'active' : ''"
+        :class="
+          (filterModuleId(item.id) > item?.maxBall &&
+            filterReadModule(item.id).length === item.ReadCount) ||
+          filterReadModule(item.id).length === item.ReadCount
+            ? 'active'
+            : ''
+        "
       >
         <div class="tests__module-title">
           {{ $t("Module") }} {{ item.id }}: {{ item.text }}
@@ -27,8 +33,10 @@
                 role="status"
               ></div>
             </div>
-            <div v-if="!loading">{{ filterModuleId(item.id) }}</div>
-            <div v-else>null</div>
+            <div v-if="filterModuleId(item.id)">
+              {{ filterModuleId(item.id) }}
+            </div>
+            <div v-else>100</div>
           </div>
         </div>
       </div>
@@ -38,7 +46,15 @@
       <div class="certificate">
         <div class="content_certificate">
           <div class="certificate_img">
-            <img src="/images/certificate_img1.png" alt="img" />
+            <div class="img" style="max-width: 150px">
+              <img src="/images/ser1.png" alt="img" />
+            </div>
+            <div class="img" style="max-width: 100px">
+              <img src="/images/ser2.png" alt="img" />
+            </div>
+            <div class="img" style="max-width: 100px">
+              <img src="/images/ser3.png" alt="img" />
+            </div>
           </div>
           <img class="back" src="@/assets/sertificate_background.png" alt="" />
           <p class="certificate__title">СЕРТИФИКАТ</p>
@@ -49,63 +65,19 @@
             COVID-19: КЛИНИЧЕСКИЕ И ЭТИЧЕСКИЕ АСПЕКТЫ ОКАЗАНИЯ ПОМОЩИ
           </p>
           <div class="certificate__footer">
-            <p>Дата выпуска: {{ new Date() | moment("Do MM YY") }}</p>
+            <p>Дата выпуска: {{ new Date() | moment("DD.MM.YY") }}</p>
             <div class="certificate_img" style="max-width: 50px">
               <img src="/images/certificate_img.png" alt="img" />
             </div>
           </div>
         </div>
       </div>
-      <VueHtml2pdf
-        :show-layout="false"
-        :float-layout="true"
-        :enable-download="true"
-        :paginate-elements-by-height="1200"
-        :filename="user.data.result.firstName + user.data.result.lastName"
-        :pdf-quality="2"
-        pdf-format="a4"
-        pdf-orientation="portrait"
-        ref="html2Pdf"
+
+      <button
+        class="btn__download"
+        id="sertificate_down"
+        @click="generateReport"
       >
-        <section slot="pdf-content">
-          <div class="certificate">
-            <div class="content_certificate">
-              <div class="certificate_img">
-                <img src="/images/certificate_img1.png" alt="img" />
-              </div>
-              <img
-                class="back"
-                src="@/assets/sertificate_background.png"
-                alt=""
-              />
-              <p class="certificate__title">CERTIFICATE</p>
-              <p style="font-size: 16px; margin-bottom: 10px">
-                OFF APPRECIATION
-              </p>
-              <p style="font-size: 18px; margin-bottom: 8px; font-weight: 500">
-                THIS CERTIFICATE IS PROUDLY PRESENTED TO
-              </p>
-              <p style="font-size: 20px; margin-bottom: 12px">
-                {{
-                  user.data.result.firstName + " " + user.data.result.lastName
-                }}
-              </p>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry.
-              </p>
-              <div class="certificate__footer">
-                <p>{{ new Date() | moment("dddd, MMMM Do YYYY") }}</p>
-                <div class="certificate_img" style="max-width: 50px">
-                  <img src="/images/certificate_img.png" alt="img" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </VueHtml2pdf>
-      <button class="btn__download" @click="generateReport">
         {{ $t("Download") }}
       </button>
     </div>
@@ -114,11 +86,10 @@
 
 <script>
 import TokenService from "@/service/TokenService";
-import VueHtml2pdf from "vue-html2pdf";
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "tests-results",
-  components: { VueHtml2pdf },
+  components: {},
   data() {
     return {
       modules: [
@@ -128,7 +99,8 @@ export default {
           text: "Острые респираторные вирусные инфекции",
           link: "module-one",
           photo: "moduleImg1.png",
-          maxBall: 70,
+          maxBall: 75,
+          ReadCount: 6,
         },
         {
           id: 2,
@@ -136,6 +108,7 @@ export default {
           text: "COVID-19 - новая респираторная инфекция",
           link: "module-two",
           photo: "moduleImg2.png",
+          ReadCount: 3,
         },
         {
           id: 3,
@@ -143,6 +116,8 @@ export default {
           text: "Общие способы защиты от острых респираторных инфекций",
           link: "module-three",
           photo: "moduleImg3.png",
+          maxBall: 70,
+          ReadCount: 3,
         },
         {
           id: 4,
@@ -150,6 +125,8 @@ export default {
           text: "COVID-19 и ВИЧ-инфекция",
           link: "module-four",
           photo: "moduleImg4.png",
+          maxBall: 70,
+          ReadCount: 4,
         },
         {
           id: 5,
@@ -157,6 +134,7 @@ export default {
           text: "Оказание помощи женщинам с COVID-19 во время беременности и родов",
           link: "module-five",
           photo: "moduleImg5.png",
+          ReadCount: 2,
         },
         {
           id: 6,
@@ -164,6 +142,8 @@ export default {
           text: "COVID-19 и права человека",
           link: "module-six",
           photo: "moduleImg6.png",
+          maxBall: 80,
+          ReadCount: 4,
         },
         {
           id: 7,
@@ -171,6 +151,7 @@ export default {
           text: "Конфиденциальность и информационная безопасность ЛЖВ",
           link: "module-seven",
           photo: "moduleImg7.png",
+          ReadCount: 2,
         },
         {
           id: 8,
@@ -178,6 +159,8 @@ export default {
           text: "Навыки эффективного общения в деятельности социального работника в условиях пандемии COVID-19",
           link: "module-eight",
           photo: "moduleImg8.png",
+          maxBall: 70,
+          ReadCount: 4,
         },
         {
           id: 9,
@@ -185,14 +168,19 @@ export default {
           text: "Профилактика эмоционального выгорания у сотрудников ННО, работающих с уязвимыми группами",
           link: "module-nine",
           photo: "moduleImg9.png",
+          maxBall: 102,
+          ReadCount: 2,
         },
       ],
     };
   },
   methods: {
     generateReport() {
-      this.$refs.html2Pdf.generatePdf();
+      this.$router.push({
+        name: "sertificate-test",
+      });
     },
+
     filterModuleId(id) {
       if (this.testResults.result.length > 0) {
         let resultModuleId = this.testResults?.result?.filter(
@@ -201,23 +189,36 @@ export default {
         return resultModuleId[0]?.testBall;
       }
     },
+    filterReadModule(id) {
+      if (this.readModule !== null) {
+        let resultReadModule = this.readModule?.data?.result?.filter(
+          (item) => item.modulId === id
+        );
+        return resultReadModule;
+      } else {
+        return null;
+      }
+    },
   },
   computed: {
-    ...mapGetters(["user"]),
-    ...mapGetters(["testResults", "loading"]),
+    ...mapState(["readModule", "testResults", "loading", "user"]),
   },
   mounted() {
     this.$store.dispatch("getTestResults", TokenService.headersToken());
-    console.log();
+    // this.modules.forEach((item) => {
+    //   if (
+    //     this.readModule.data.result.length === 28 &&
+    //     this.filterModuleId(item.id) > item.maxBall
+    //   ) {
+    //     document.getElementById("sertificate_down").classList.add("active");
+    //   }
+    // });
   },
   watch: {},
 };
 </script>
 
 <style lang="scss" scoped>
-.pdf-content {
-  min-height: 100vh;
-}
 .certificate {
   max-width: 1200px;
   width: 100%;
@@ -230,11 +231,15 @@ export default {
   z-index: 1;
   padding: 10px 40px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .certificate__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 .content_certificate p {
   color: #1f2136;
@@ -247,11 +252,17 @@ export default {
   margin-bottom: 30px;
 }
 .certificate_img {
-  max-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  overflow: hidden;
+  margin-bottom: 50px;
 }
-.certificate_img img {
+.certificate_img .img {
+  width: 100%;
+  margin: 10px;
+}
+.certificate_img .img img {
   width: 100%;
   object-fit: contain;
 }
@@ -276,6 +287,9 @@ export default {
   color: #95abc6;
   border-radius: 10px;
   margin-top: 20px;
+}
+.btn__download.active {
+  pointer-events: all;
 }
 .tests__results-title {
   font-size: 20px;

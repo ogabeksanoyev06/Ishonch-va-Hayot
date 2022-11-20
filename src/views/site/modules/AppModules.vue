@@ -77,8 +77,8 @@ export default {
           text: "COVID-19 и права человека",
           link: "module-six",
           photo: "moduleImg6.png",
-          maxBall: 60,
-          tabCount: 5,
+          maxBall: 80,
+          tabCount: 4,
         },
         {
           id: 7,
@@ -94,8 +94,8 @@ export default {
           text: "Навыки эффективного общения в деятельности социального работника в условиях пандемии COVID-19",
           link: "module-eight",
           photo: "moduleImg8.png",
-          maxBall: 60,
-          tabCount: 3,
+          maxBall: 70,
+          tabCount: 4,
         },
         {
           id: 9,
@@ -103,13 +103,14 @@ export default {
           text: "Профилактика эмоционального выгорания у сотрудников ННО, работающих с уязвимыми группами",
           link: "module-nine",
           photo: "moduleImg9.png",
-          tabCount: 1,
+          maxBall: 72,
+          tabCount: 2,
         },
         {
           id: 10,
           sertificate: "СЕРТИФИКАТ",
           photo: "moduleImg10.png",
-          link: "module-one",
+          link: "sertificate-test",
         },
       ],
     };

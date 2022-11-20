@@ -1,0 +1,8 @@
+{
+  "messages": {
+    "required": "Ushbu '{_field_}' maydoni yozish uchun talab qilinadi",
+    "min": "Ushbu '{_field_}' maydoni kamida {length} belgidan iborat bo'lishi lozim",
+    "max": "Ushbu '{_field_}' maydoni ko'pi bilan {length} belgidan iborat bo'lishi lozim",
+    "email": "Ushbu '{_field_}' maydoni email bo'lishi kerak"
+  }
+}

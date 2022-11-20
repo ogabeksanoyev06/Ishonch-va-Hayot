@@ -202,8 +202,8 @@ export default {
         let resultModuleId = this.testResults?.result?.filter(
           (item) => item.modulId === this.id
         );
-        return resultModuleId[0]?.testBall >= this.maxBall
-          ? this.maxBall
+        return this.maxBall
+          ? resultModuleId[0]?.testBall >= this.maxBall
           : true;
       } else {
         return false;
